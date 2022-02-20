@@ -4,7 +4,7 @@ import {
   LOGIN_FAIL,
   LOGIN_SUCCESS,
 } from "../../../constants/actionTypes";
-import axiosInstance from "../../../helpers/axiosInterceptor";
+import axiosInstance from "../../../helpers/axiosInstance";
 
 export default ({ password, userName: username }) => (dispatch) => {
   dispatch({

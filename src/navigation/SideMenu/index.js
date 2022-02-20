@@ -3,7 +3,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Image, Text, View, TouchableOpacity, Alert } from "react-native";
 import Container from "../../components/common/Container";
 import styles from "./styles";
-
+import Icon from "../../components/common/Icon";
 import { SETTINGS } from "../../constants/routeNames";
 import logoutUser from "../../context/actions/auth/logoutUser";
 
@@ -26,14 +26,14 @@ const SideMenu = ({ navigation, authDispatch }) => {
   };
   const menuItems = [
     {
-      icon: <Text>T</Text>,
+      icon: <Icon size={20} type="fontisto" name="player-settings" />,
       name: "Settings",
       onPress: () => {
         navigation.navigate(SETTINGS);
       },
     },
     {
-      icon: <Text>T</Text>,
+      icon: <Icon size={20} type="material" name="logout" />,
       name: "Logout",
       onPress: handleLogout,
     },

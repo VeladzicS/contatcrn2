@@ -39,7 +39,7 @@ const CustomMessage = ({
       return colors.success;
     }
 
-    if (infor) {
+    if (info) {
       return colors.secondary;
     }
 

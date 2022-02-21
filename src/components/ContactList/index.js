@@ -72,12 +72,13 @@ const ContactList = ({ modalVisible, data, loading, setModalVisible }) => {
               <Text style={styles.name}>{first_name}</Text>
               <Text style={styles.name}>{last_name}</Text>
             </View>
-            <Text
-              style={styles.phoneNumber}
-            >{`${country_code}``${phone_number}`}</Text>
+            <Text style={styles.phoneNumber}>
+              {country_code}
+              {phone_number}
+            </Text>
           </View>
+          <Icon name="right" type="ant" size={20} color={colors.grey} />
         </View>
-        <Icon name="right" type="ant" size={20} color={colors.grey} />
       </TouchableOpacity>
     );
   };

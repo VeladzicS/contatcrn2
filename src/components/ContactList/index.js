@@ -69,7 +69,9 @@ const ContactList = ({ modalVisible, data, loading, setModalVisible }) => {
           )}
           <View style={{ paddingLeft: 20 }}>
             <View style={{ flexDirection: "row" }}>
-              <Text style={styles.name}>{first_name}</Text>
+              <Text style={[styles.name, { paddingRight: 5 }]}>
+                {first_name}
+              </Text>
               <Text style={styles.name}>{last_name}</Text>
             </View>
             <Text style={styles.phoneNumber}>
@@ -77,7 +79,13 @@ const ContactList = ({ modalVisible, data, loading, setModalVisible }) => {
               {phone_number}
             </Text>
           </View>
-          <Icon name="right" type="ant" size={20} color={colors.grey} />
+          <Icon
+            name="right"
+            type="ant"
+            size={20}
+            color={colors.grey}
+            style={{ marginLeft: "auto" }}
+          />
         </View>
       </TouchableOpacity>
     );

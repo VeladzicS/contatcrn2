@@ -14,6 +14,42 @@ import {
 
 const contacts = (state, { type, payload }) => {
   switch (type) {
+    case CREATE_CONTACT_LOADING:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: true,
+          error: null,
+        },
+      };
+
+    case CREATE_CONTACT_SUCCESS:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: false,
+          error: null,
+          data: payload,
+        },
+        getContacts: {
+          ...state.getContacts,
+          loading: false,
+          data: [payload, ...state.getContacts.data],
+          error: null,
+        },
+      };
+
+    case CREATE_CONTACT_FAIL:
+      return {
+        ...state,
+        createContact: {
+          ...state.createContact,
+          loading: false,
+          error: payload,
+        },
+      };
     case GET_CONTACTS_LOADING:
       return {
         ...state,

@@ -5,13 +5,13 @@ export default {
     loading: false,
   },
 
-  createContacts: {
+  createContact: {
     data: {},
     error: null,
     loading: false,
   },
 
-  deleteContacts: {
+  deleteContact: {
     data: {},
     error: null,
     loading: false,

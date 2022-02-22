@@ -8,7 +8,14 @@ import CountryPicker from "react-native-country-picker-modal";
 import styles from "./styles";
 import { DEFAULT_IMAGE_URI } from "../../constants/actionTypes/general";
 
-const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit }) => {
+const CreateContactComponent = ({
+  loading,
+  error,
+  onChangeText,
+  form,
+  setForm,
+  onSubmit,
+}) => {
   return (
     <View style={styles.container}>
       <Container>
@@ -25,6 +32,7 @@ const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit }) => {
           onChangeText={(value) => {
             onChangeText({ name: "firstName", value: value });
           }}
+          error={error?.first_name?.[0]}
         />
         <Input
           label="Last Name"
@@ -32,6 +40,7 @@ const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit }) => {
           onChangeText={(value) => {
             onChangeText({ name: "lastName", value: value });
           }}
+          error={error?.last_name?.[0]}
         />
         <Input
           icon={
@@ -55,10 +64,17 @@ const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit }) => {
           onChangeText={(value) => {
             onChangeText({ name: "phoneNumber", value: value });
           }}
+          error={error?.phone_number?.[0]}
           label="Phone Number"
           placeholder="Enter Phone Number"
         />
-        <CustomButton primary title="Submit" onPress={onSubmit} />
+        <CustomButton
+          loading={loading}
+          disabled={loading}
+          primary
+          title="Submit"
+          onPress={onSubmit}
+        />
       </Container>
     </View>
   );

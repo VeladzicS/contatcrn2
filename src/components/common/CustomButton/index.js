@@ -61,7 +61,7 @@ const CustomButton = ({
               paddingLeft: loading ? 5 : 0,
             }}
           >
-            {title}
+            {loading ? "Please wait..." : title}
           </Text>
         )}
       </View>

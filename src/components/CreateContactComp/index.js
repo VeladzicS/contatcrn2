@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Switch, TouchableOpacity } from "react-native";
 import React from "react";
 import Container from "../common/Container";
 import CustomButton from "../common/CustomButton";
@@ -7,6 +7,8 @@ import CountryPicker from "react-native-country-picker-modal";
 
 import styles from "./styles";
 import { DEFAULT_IMAGE_URI } from "../../constants/actionTypes/general";
+import colors from "../../assets/theme/colors";
+import ImagePicker from "../common/ImagePicker";
 
 const CreateContactComponent = ({
   loading,
@@ -14,7 +16,11 @@ const CreateContactComponent = ({
   onChangeText,
   form,
   setForm,
+  toggleValueChange,
   onSubmit,
+  sheetRef,
+  openSheet,
+  closeSheet,
 }) => {
   return (
     <View style={styles.container}>
@@ -25,7 +31,10 @@ const CreateContactComponent = ({
           style={styles.imageView}
           source={{ uri: DEFAULT_IMAGE_URI }}
         />
-        <Text style={styles.chooseText}>Chose Image</Text>
+        <TouchableOpacity onPress={openSheet}>
+          <Text style={styles.chooseText}>Chose Image</Text>
+        </TouchableOpacity>
+
         <Input
           label="First Name"
           placeholder="Enter First Name"
@@ -68,6 +77,24 @@ const CreateContactComponent = ({
           label="Phone Number"
           placeholder="Enter Phone Number"
         />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingVertical: 10,
+          }}
+        >
+          <Text style={{ fontSize: 17 }}>Add to favourites</Text>
+          <Switch
+            trackColor={{ false: "grey", true: colors.primary }}
+            thumbColor="#FFFFFF"
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleValueChange}
+            value={form.isFavorite}
+          />
+        </View>
+
         <CustomButton
           loading={loading}
           disabled={loading}
@@ -76,6 +103,7 @@ const CreateContactComponent = ({
           onPress={onSubmit}
         />
       </Container>
+      <ImagePicker ref={sheetRef} />
     </View>
   );
 };

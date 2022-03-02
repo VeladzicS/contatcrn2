@@ -10,6 +10,7 @@ import { GlobalContext } from "../../context/Provider";
 
 const CreateContact = () => {
   const [form, setForm] = useState({});
+  const [localFile, setLocalFile] = useState(null);
   const {
     contactsDispatch,
     contactsState: {
@@ -31,6 +32,12 @@ const CreateContact = () => {
   };
   const toggleValueChange = () => {
     setForm({ ...form, isFavorite: !form.isFavorite });
+  };
+
+  const onFileSelected = (images) => {
+    closeSheet();
+    setLocalFile(images);
+    console.log("images", images);
   };
 
   const closeSheet = () => {
@@ -57,6 +64,8 @@ const CreateContact = () => {
       sheetRef={sheetRef}
       openSheet={openSheet}
       closeSheet={closeSheet}
+      onFileSelected={onFileSelected}
+      localFile={localFile}
     />
   );
 };

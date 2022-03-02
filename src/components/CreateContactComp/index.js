@@ -21,6 +21,8 @@ const CreateContactComponent = ({
   sheetRef,
   openSheet,
   closeSheet,
+  onFileSelected,
+  localFile,
 }) => {
   return (
     <View style={styles.container}>
@@ -29,7 +31,7 @@ const CreateContactComponent = ({
           width={150}
           height={150}
           style={styles.imageView}
-          source={{ uri: DEFAULT_IMAGE_URI }}
+          source={{ uri: localFile?.path || DEFAULT_IMAGE_URI }}
         />
         <TouchableOpacity onPress={openSheet}>
           <Text style={styles.chooseText}>Chose Image</Text>
@@ -103,7 +105,7 @@ const CreateContactComponent = ({
           onPress={onSubmit}
         />
       </Container>
-      <ImagePicker ref={sheetRef} />
+      <ImagePicker ref={sheetRef} onFileSelected={onFileSelected} />
     </View>
   );
 };

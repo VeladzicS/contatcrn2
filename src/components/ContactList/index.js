@@ -9,13 +9,13 @@ import {
 } from "react-native";
 import colors from "../../assets/theme/colors";
 import { CREATE_CONTACT } from "../../constants/routeNames";
-import AppModal from "../common/AppModal";
 import Icon from "../common/Icon";
 import CustomMessage from "../common/Message";
 import styles from "./styles";
 
-const ContactList = ({ modalVisible, data, loading, setModalVisible }) => {
+const ContactList = ({ sortBy, data, loading }) => {
   const { navigate } = useNavigation();
+
   const ListEmptyComponent = () => {
     return (
       <View
@@ -93,13 +93,6 @@ const ContactList = ({ modalVisible, data, loading, setModalVisible }) => {
   return (
     <>
       <View style={{ backgroundColor: colors.white }}>
-        <AppModal
-          modalFooter={<></>}
-          modalBody={<View></View>}
-          title="My Profile"
-          modalVisible={modalVisible}
-          setModalVisible={setModalVisible}
-        />
         {loading && (
           <View
             style={{
@@ -115,7 +108,26 @@ const ContactList = ({ modalVisible, data, loading, setModalVisible }) => {
           <View style={{ paddingVertical: 20 }}>
             <FlatList
               renderItem={renderItem}
-              data={data}
+              data={
+                sortBy
+                  ? data.sort((a, b) => {
+                      if (sortBy === "First Name") {
+                        if (b.first_name > a.first_name) {
+                          return -1;
+                        } else {
+                          return 1;
+                        }
+                      }
+                      if (sortBy === "Last Name") {
+                        if (b.last_name > a.last_name) {
+                          return -1;
+                        } else {
+                          return 1;
+                        }
+                      }
+                    })
+                  : data
+              }
               ItemSeparatorComponent={() => (
                 <View style={{ height: 0.5, backgroundColor: colors.grey }} />
               )}
